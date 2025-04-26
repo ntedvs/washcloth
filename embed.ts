@@ -20,8 +20,8 @@ const embeddings = await Promise.all(
       input: content,
     })
 
-    return { embedding: embeddings[0], source: url }
-  })
+    return { embedding: embeddings[0], text: content, source: url }
+  }),
 )
 
 await Deno.writeTextFile("embeddings.json", JSON.stringify(embeddings))
