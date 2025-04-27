@@ -15,12 +15,16 @@ const embeddings = await Promise.all(
     const $ = load(html)
     const content = $("body").text()
 
-    const { embeddings } = await ollama.embed({
+    const embedding = await ollama.embed({
       model: "mxbai-embed-large",
       input: content,
     })
 
-    return { embedding: embeddings[0], text: content, source: url }
+    return {
+      embedding: embedding.embeddings[0],
+      text: content,
+      source: url,
+    }
   }),
 )
 
